@@ -31,7 +31,7 @@ function updateLocalStorage() {
     const tasks = [];
 
     taskList.forEach(function (task) {
-        tasks.push(task.textContent);
+        tasks.push(task);
     });
 
     localStorage.setItem('todoList', JSON.stringify(tasks));
