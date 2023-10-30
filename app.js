@@ -6,7 +6,6 @@ document.querySelector('#push').onclick = function () {
     if (inputValue.length === 0) {
         alert('Please Enter a Value');
     } else {
-        // Create a new task element
         const newTask = document.createElement('div');
         newTask.classList.add('taskadd');
         newTask.innerHTML = `
@@ -14,25 +13,20 @@ document.querySelector('#push').onclick = function () {
         <button class='delete'><i class="fa-solid fa-trash" style="color: #3d84ff;"></i></button>
       `;
 
-        // Append the new task to the list
         document.querySelector('.taskS_input').appendChild(newTask);
 
-        // Clear the input field
         inputField.value = '';
 
-        // Add a click event listener to the delete button
         const deleteButton = newTask.querySelector('.delete');
         deleteButton.onclick = function () {
             newTask.remove();
             updateLocalStorage();
         }
 
-        // Update local storage
         updateLocalStorage();
     }
 }
 
-// Function to update local storage with current task list
 function updateLocalStorage() {
     const taskList = document.querySelectorAll('.taskadd span');
     const tasks = [];
@@ -44,7 +38,6 @@ function updateLocalStorage() {
     localStorage.setItem('todoList', JSON.stringify(tasks));
 }
 
-// Function to load tasks from local storage on page refresh
 function loadTasks() {
     const storedTasks = localStorage.getItem('todoList');
 
@@ -61,7 +54,6 @@ function loadTasks() {
 
             document.querySelector('.taskS_input').appendChild(newTask);
 
-            // Add a click event listener to the delete button
             const deleteButton = newTask.querySelector('.delete');
             deleteButton.onclick = function () {
                 newTask.remove();
@@ -71,5 +63,4 @@ function loadTasks() {
     }
 }
 
-// Load tasks when the page is refreshed
 window.addEventListener('load', loadTasks);
