@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+        integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <style>
+        .Set_ToDo {
+            width: 500px;
+            margin: 300px;
+            background-color: white;
+            padding: 20px;
+        }
+
+        .taskadd {
+            /* display: none; */
+            font-size: 19px;
+            border-bottom: 1px solid #F0F1F3;
+            margin-top: 14px;
+        }
+
+        .bg_col {
+            background-color: #F0F1F3;
+        }
+
+        .task_input {
+            padding: 14px 20px;
+            border-radius: 45px;
+            border: 1px solid #F0F1F3;
+            outline: none;
+            width: 76%;
+        }
+
+        button {
+            position: relative;
+            border: none;
+            float: right;
+            border-radius: 45px;
+            padding: 14px 20px;
+            color: white;
+            background-color: #4d7ede;
+            outline: none;
+        }
+
+        .delete {
+            position: relative;
+            border: none;
+            background-color: white;
+            float: right;
+            padding: 0;
+        }
+
+        .newTask {
+            display: flex;
+            justify-content: space-between;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="d-flex justify-content-between bg_col">
+        <div class="Set_ToDo">
+            <input type="text" class="task_input" placeholder="Add a new task">
+            <button id="push">Add Task</button>
+            <div class="taskS_input">
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+    <script src="app.js"></script>
+</body>
+
+</html>
