@@ -24,7 +24,7 @@
             font-size: 16px;
             font-family: cursive;
             font-weight: 500 !important;
-            border: 1px solid #F0F1F3;
+            border-bottom: 1px solid #F0F1F3;
         }
 
         #taskInput {
@@ -44,6 +44,12 @@
         .BG_fix {
             background-color: white;
             max-width: 70%;
+            margin-top: 10%;
+        }
+
+        .list-group-item {
+            border: none;
+            border-bottom: 1px solid rgba(0, 0, 0, .125);
         }
     </style>
 </head>
@@ -138,17 +144,16 @@
                     const editButton = li.querySelector('.edit');
                     const deleteButton = li.querySelector('.delete');
 
-                    // Add a click event listener to the complete button
-                    // const completeButton = li.querySelector('.complete');
+
                     completeButton.onclick = function () {
-                        li.querySelector('span').classList.toggle('completed');
+                        document.querySelector('span').classList.toggle('completed');
                         updateLocalStorage();
                     };
 
                     editButton.onclick = function () {
                         const newTaskText = prompt('Edit the task:', taskText);
                         if (newTaskText !== null && newTaskText.trim() !== '') {
-                            li.querySelector('span').textContent = newTaskText;
+                            document.querySelector('span').textContent = newTaskText;
                             updateLocalStorage();
                         }
                     };
@@ -158,13 +163,11 @@
                         updateLocalStorage();
                     };
 
-                    // Append the loaded task to the task list
                     document.getElementById('taskList').appendChild(li);
                 });
             }
         }
 
-        // Load tasks when the page is refreshed
         window.addEventListener('load', loadTasks);
     </script>
 </body>
