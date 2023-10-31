@@ -51,6 +51,10 @@
             border: none;
             border-bottom: 1px solid rgba(0, 0, 0, .125);
         }
+
+        .btn {
+            margin-left: 10px;
+        }
     </style>
 </head>
 
@@ -79,7 +83,7 @@
                 li.innerHTML = `
           <span>${taskText}</span>
           <button class="btn btn-success float-right m-2 complete">Complete</button>
-          <button class="btn btn-warning float-right m-2 edit">Edit</button>
+          <button class="btn btn-warning float-right m-2 edit">Update</button>
           <button class="btn btn-danger float-right delete">Delete</button>
         `;
 
@@ -88,7 +92,8 @@
                 const deleteButton = li.querySelector('.delete');
 
                 completeButton.onclick = function () {
-                    li.querySelector('span').classList.toggle('completed');
+                    const span = li.querySelector('span');
+                    span.classList.toggle('completed'); // Toggle 'completed' class on the span
                     updateLocalStorage();
                 };
 
@@ -106,7 +111,6 @@
                 };
 
                 document.getElementById('taskList').appendChild(li);
-
                 taskInput.value = '';
 
                 updateLocalStorage();
@@ -118,7 +122,10 @@
             const tasks = [];
 
             taskList.forEach(function (task) {
-                tasks.push(task.textContent);
+                tasks.push({
+                    text: task.textContent,
+                    completed: task.classList.contains('completed') // Check if 'completed' class is present
+                });
             });
 
             localStorage.setItem('todoList', JSON.stringify(tasks));
@@ -130,30 +137,34 @@
             if (storedTasks) {
                 const tasks = JSON.parse(storedTasks);
 
-                tasks.forEach(function (taskText) {
+                tasks.forEach(function (task) {
                     const li = document.createElement('li');
                     li.className = 'list-group-item';
                     li.innerHTML = `
-            <span>${taskText}</span>
-            <button class="btn btn-success float-right mx-2 complete">Complete</button>
-            <button class="btn btn-warning float-right mx-2 edit">Update</button>
-            <button class="btn btn-danger float-right delete">Delete</button>
-          `;
+                <span>${task.text}</span>
+                <button class="btn btn-success float-right ms-2 complete">Complete</button>
+                <button class="btn btn-warning float-right ms-2 edit">Update</button>
+                <button class="btn btn-danger float-right delete">Delete</button>
+            `;
 
                     const completeButton = li.querySelector('.complete');
                     const editButton = li.querySelector('.edit');
                     const deleteButton = li.querySelector('.delete');
 
+                    if (task.completed) {
+                        li.querySelector('span').classList.add('completed');
+                    }
 
                     completeButton.onclick = function () {
-                        li.querySelector('span').classList.toggle('completed');
+                        const span = li.querySelector('span');
+                        span.classList.toggle('completed'); // Toggle 'completed' class on the span
                         updateLocalStorage();
                     };
 
                     editButton.onclick = function () {
-                        const newTaskText = prompt('Edit the task:', taskText);
+                        const newTaskText = prompt('Edit the task:', task.text);
                         if (newTaskText !== null && newTaskText.trim() !== '') {
-                            document.querySelector('span').textContent = newTaskText;
+                            li.querySelector('span').textContent = newTaskText;
                             updateLocalStorage();
                         }
                     };
